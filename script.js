@@ -78,7 +78,7 @@ arr.forEach(button => {
                     input.value += e.target.innerHTML;
                 }
             }
-            else if(e.target.innerHTML != '%' && e.target.innerHTML != '+' && e.target.innerHTML != '-' && e.target.innerHTML != 'x' && e.target.innerHTML != '÷' && e.target.innerHTML != '^'){
+            else if(e.target.innerHTML != '%' && e.target.innerHTML != '+' && e.target.innerHTML != '-' && e.target.innerHTML != 'x' && e.target.innerHTML != '÷' && e.target.innerHTML != '^' && e.target.innerHTML != 'AC' && e.target.innerHTML != '&lt;='){
             string += e.target.innerHTML;
             input.value += e.target.innerHTML;
             }
