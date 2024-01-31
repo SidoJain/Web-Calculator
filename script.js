@@ -40,8 +40,25 @@ arr.forEach(button => {
             input.value += ' ' + e.target.innerHTML + ' ';
         }
         else{
+            if(e.target.innerHTML == '.'){
+                temp = string.split(' ');
+                let count = 0;
+                for (let i = 0; i < temp[temp.length-1].length; i++){
+                    if(temp[temp.length-1].charAt(i) == '.'){
+                        count++;
+                        break;
+                    }
+                }
+
+                if(count == 0){
+                    string += e.target.innerHTML;
+                    input.value += e.target.innerHTML;
+                }
+            }
+            else{
             string += e.target.innerHTML;
             input.value += e.target.innerHTML;
+            }
         }
     })
 })
