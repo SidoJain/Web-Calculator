@@ -19,8 +19,11 @@ arr.forEach(button => {
                 input.value += ' ÷ ';
             }
             else if(e.target.innerHTML == '='){
-                string = eval(string);
-                input.value = string;
+                string = eval(string).toString();
+                if(string.includes('e'))
+                    input.value = (Number.parseFloat(string)).toExponential(3);
+                else
+                    input.value = (Number.parseFloat(string)).toFixed(3);
             }
             else if(e.target.innerHTML == 'AC'){
                 string = '';
