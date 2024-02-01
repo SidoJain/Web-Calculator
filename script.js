@@ -21,9 +21,10 @@ arr.forEach(button => {
             else if(e.target.innerHTML == '='){
                 string = eval(string).toString();
                 if(string.includes('e'))
-                    input.value = (Number.parseFloat(string)).toExponential(3);
+                    string = (Number.parseFloat(string)).toExponential(3);
                 else
-                    input.value = (Number.parseFloat(string)).toFixed(3);
+                    string = (Number.parseFloat(string)).toFixed(3);
+                input.value = string;
             }
             else if(e.target.innerHTML == 'AC'){
                 string = '';
