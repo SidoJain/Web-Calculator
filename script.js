@@ -76,8 +76,11 @@ arr.forEach(button => {
                 if(count == 0)
                     input.value += e.target.innerHTML;
             }
-            else if(e.target.innerHTML != '%' && e.target.innerHTML != '+' && e.target.innerHTML != 'x' && e.target.innerHTML != '÷' && e.target.innerHTML != '^' && e.target.innerHTML != 'AC' && e.target.innerHTML != '&lt;=')
-                input.value += e.target.innerHTML;
+            else if(e.target.innerHTML != '%' && e.target.innerHTML != '+' && e.target.innerHTML != 'x' && e.target.innerHTML != '÷' && e.target.innerHTML != '^' && e.target.innerHTML != 'AC' && e.target.innerHTML != '&lt;=' && e.target.innerHTML != '=')
+                if(e.target.innerHTML == '-')
+                    input.value += ' ' + e.target.innerHTML + ' ';
+                else
+                    input.value += e.target.innerHTML;
         }
     })
 })
