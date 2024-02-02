@@ -1,52 +1,54 @@
 let input = document.getElementById('inputBox');
 let bottons = document.querySelectorAll('button')
 
-let string = '';
 let arr = Array.from(bottons);
 arr.forEach(button => {
     button.addEventListener('click', (e) => {
-        if(string != ''){
-            if(e.target.innerHTML == '^'){
-                string += ' ** ';
-                input.value += ' ^ ';
-            }
-            else if(e.target.innerHTML == 'x'){
-                string += ' * ';
-                input.value += ' x ';
-            }
-            else if(e.target.innerHTML == '÷'){
-                string += ' / ';
-                input.value += ' ÷ ';
-            }
-            else if(e.target.innerHTML == '='){
-                string = eval(string).toString();
-                if(string.includes('e'))
-                    string = (Number.parseFloat(string)).toExponential(3);
+        if(input.value != ''){
+            if(e.target.innerHTML == '^')
+                if(input.value.slice(-1) != ' ')
+                    input.value += ' ^ ';
                 else
-                    string = (Number.parseFloat(string)).toFixed(3);
-                input.value = string;
-            }
-            else if(e.target.innerHTML == 'AC'){
-                string = '';
-                input.value = string;
+                    input.value += '';
+            else if(e.target.innerHTML == 'x')
+                if(input.value.slice(-1) != ' ')
+                    input.value += ' x ';
+                else
+                    input.value += '';
+            else if(e.target.innerHTML == '÷')
+                if(input.value.slice(-1) != ' ')
+                    input.value += ' ÷ ';
+                else
+                    input.value += '';
+            else if(e.target.innerHTML == '%')
+                if(input.value.slice(-1) != ' ')
+                    input.value += ' ' + e.target.innerHTML + ' ';
+                else
+                    input.value += '';
+            else if(e.target.innerHTML == '+' || e.target.innerHTML == '-')
+                input.value += ' ' + e.target.innerHTML + ' ';
+            else if(e.target.innerHTML == 'AC')
+                input.value = '';
+            else if(e.target.innerHTML == '='){
+                input.value = eval(input.value.replace('^', '**').replace('÷', '/').replace('x', '*')).toString();
+                if(input.value.includes('e') || input.value.length > 6)
+                    input.value = (Number.parseFloat(input.value)).toExponential(4);
+                else
+                    input.value = (Number.parseFloat(input.value)).toFixed(4);
             }
             else if(e.target.innerHTML == '&lt;='){
-                if(string.charAt(string.length - 1) == ' ')
-                    string = string.substring(0, string.length - 1);
-                if(string.charAt(string.length - 1) == '*' && string.charAt(string.length - 2) == '*')
-                    string = string.substring(0, string.length - 2);
-                string = string.substring(0, string.length - 1);
-                if(string == ' ')
-                    string = '';
-                input.value = string.replace('**', '^').replace('*', 'x').replace('/', '÷');
-            }
-            else if(e.target.innerHTML == '%' || e.target.innerHTML == '+' || e.target.innerHTML == '-'){
-                string += ' ' + e.target.innerHTML + ' ';
-                input.value += ' ' + e.target.innerHTML + ' ';
+                if(input.value.slice(-1) == ' ')
+                    input.value = input.value.substring(0, input.value.length - 1);
+                if(input.value.slice(-1) == '^')
+                    input.value = input.value.substring(0, input.value.length - 1);
+                input.value = input.value.substring(0, input.value.length - 1);
+                if(input.value == ' ')
+                    input.value = '';
+                input.value = input.value.replace('**', '^').replace('*', 'x').replace('/', '÷');
             }
             else{
                 if(e.target.innerHTML == '.'){
-                    temp = string.split(' ');
+                    temp = input.value.split(' ');
                     let count = 0;
                     for (let i = 0; i < temp[temp.length-1].length; i++){
                         if(temp[temp.length-1].charAt(i) == '.'){
@@ -54,21 +56,16 @@ arr.forEach(button => {
                             break;
                         }
                     }
-    
-                    if(count == 0){
-                        string += e.target.innerHTML;
+                    if(count == 0)
                         input.value += e.target.innerHTML;
-                    }
                 }
-                else{
-                string += e.target.innerHTML;
-                input.value += e.target.innerHTML;
-                }
+                else
+                    input.value += e.target.innerHTML;
             }
         }
         else{
             if(e.target.innerHTML == '.'){
-                temp = string.split(' ');
+                temp = input.value.split(' ');
                 let count = 0;
                 for (let i = 0; i < temp[temp.length-1].length; i++){
                     if(temp[temp.length-1].charAt(i) == '.'){
@@ -76,16 +73,11 @@ arr.forEach(button => {
                         break;
                     }
                 }
-
-                if(count == 0){
-                    string += e.target.innerHTML;
+                if(count == 0)
                     input.value += e.target.innerHTML;
-                }
             }
-            else if(e.target.innerHTML != '%' && e.target.innerHTML != '+' && e.target.innerHTML != '-' && e.target.innerHTML != 'x' && e.target.innerHTML != '÷' && e.target.innerHTML != '^' && e.target.innerHTML != 'AC' && e.target.innerHTML != '&lt;='){
-            string += e.target.innerHTML;
-            input.value += e.target.innerHTML;
-            }
+            else if(e.target.innerHTML != '%' && e.target.innerHTML != '+' && e.target.innerHTML != 'x' && e.target.innerHTML != '÷' && e.target.innerHTML != '^' && e.target.innerHTML != 'AC' && e.target.innerHTML != '&lt;=')
+                input.value += e.target.innerHTML;
         }
     })
 })
