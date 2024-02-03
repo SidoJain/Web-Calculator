@@ -26,13 +26,24 @@ arr.forEach(button => {
                 else
                     input.value += '';
             else if(e.target.innerHTML === '+' || e.target.innerHTML === '-')
-                input.value += ' ' + e.target.innerHTML + ' ';
+                input.value += ' ' + e.target.innerHTML;
             else if(e.target.innerHTML === 'AC')
                 input.value = '';
             else if(e.target.innerHTML === '='){
                 if(input.value.slice(0, 2) === '. ')
                     input.value = input.value.replace('. ', '0 ');
                 input.value = input.value.replaceAll(' .', ' 0.');
+
+                if(input.value.includes('-')){
+                    input.value = input.value.replaceAll(' -', ' + -')
+
+                    temp_ = input.value.split(' ');
+                    for(let i = 0; i < temp_.length; i++)
+                        if(temp_[i].includes('-'))
+                            temp_[i] =  '(' + temp_[i] + ')';
+
+                    input.value = temp_.toString().replaceAll(',', ' ');
+                }
 
                 input.value = eval(input.value.replaceAll('^', '**').replaceAll('÷', '/').replaceAll('x', '*'));
                 if(input.value.includes('e') || input.value.length > 6)
@@ -85,7 +96,7 @@ arr.forEach(button => {
             }
             else if(!'% + x ÷ ^ AC &lt;= ='.includes(e.target.innerHTML)){
                 if(e.target.innerHTML === '-')
-                    input.value += ' ' + e.target.innerHTML + ' ';
+                    input.value += ' ' + e.target.innerHTML;
                 else
                     input.value += e.target.innerHTML;
             }
