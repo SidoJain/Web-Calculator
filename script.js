@@ -30,6 +30,10 @@ arr.forEach(button => {
             else if(e.target.innerHTML === 'AC')
                 input.value = '';
             else if(e.target.innerHTML === '='){
+                if(input.value.slice(0, 2) === '. ')
+                    input.value = input.value.replace('. ', '0 ');
+                input.value = input.value.replaceAll(' .', ' 0.');
+
                 input.value = eval(input.value.replaceAll('^', '**').replaceAll('÷', '/').replaceAll('x', '*'));
                 if(input.value.includes('e') || input.value.length > 6)
                     input.value = parseFloat(input.value).toExponential(4);
@@ -47,7 +51,6 @@ arr.forEach(button => {
                     input.value = input.value.substring(0, input.value.length - 1);
                     if(input.value === ' ')
                         input.value = '';
-                    input.value = input.value.replace('**', '^').replace('*', 'x').replace('/', '÷');
                 }
             }
             else{
@@ -80,11 +83,12 @@ arr.forEach(button => {
                 if(count === 0)
                     input.value += e.target.innerHTML;
             }
-            else if(e.target.innerHTML !== '%' && e.target.innerHTML !== '+' && e.target.innerHTML !== 'x' && e.target.innerHTML !== '÷' && e.target.innerHTML !== '^' && e.target.innerHTML !== 'AC' && e.target.innerHTML !== '&lt;=' && e.target.innerHTML !== '=')
+            else if(!'% + x ÷ ^ AC &lt;= ='.includes(e.target.innerHTML)){
                 if(e.target.innerHTML === '-')
                     input.value += ' ' + e.target.innerHTML + ' ';
                 else
                     input.value += e.target.innerHTML;
+            }
         }
     })
 })
