@@ -6,22 +6,22 @@ arr.forEach(button => {
     button.addEventListener('click', (e) => {
         if(input.value != ''){
             if(e.target.innerHTML === '^')
-                if(input.value.slice(-1) !== ' ')
+                if(!input.value.endsWith(' '))
                     input.value += ' ^ ';
                 else
                     input.value += '';
             else if(e.target.innerHTML === 'x')
-                if(input.value.slice(-1) !== ' ')
+                if(!input.value.endsWith(' '))
                     input.value += ' x ';
                 else
                     input.value += '';
             else if(e.target.innerHTML === '÷')
-                if(input.value.slice(-1) !== ' ')
+                if(!input.value.endsWith(' '))
                     input.value += ' ÷ ';
                 else
                     input.value += '';
             else if(e.target.innerHTML === '%')
-                if(input.value.slice(-1) !== ' ')
+                if(!input.value.endsWith(' '))
                     input.value += ' ' + e.target.innerHTML + ' ';
                 else
                     input.value += '';
@@ -30,14 +30,14 @@ arr.forEach(button => {
             else if(e.target.innerHTML === 'AC')
                 input.value = '';
             else if(e.target.innerHTML === '='){
-                if(input.value.slice(0, 2) === '. ')
+                if(input.value.startsWith('. '))
                     input.value = input.value.replace('. ', '0 ');
                 input.value = input.value.replaceAll(' .', ' 0.');
 
                 if(input.value.includes('-')){
                     input.value = input.value.replaceAll(' -', ' + -')
-                    if(input.value.slice(0, 2) === ' +')
-                    input.value = input.value.replace(' + ', '');
+                    if(input.value.startsWith(' +'))
+                        input.value = input.value.replace(' + ', '');
 
                     temp_ = input.value.split(' ');
                     for(let i = 0; i < temp_.length; i++)
@@ -57,9 +57,9 @@ arr.forEach(button => {
                 if(input.value === 'Infinity' || input.value === 'NaN' || input.value === '-Infinity')
                     input.value = '';
                 else{
-                    if(input.value.slice(-1) === ' ')
+                    if(input.value.endsWith(' '))
                         input.value = input.value.substring(0, input.value.length - 1);
-                    if(input.value.slice(-1) === '^')
+                    if(input.value.endsWith('^'))
                         input.value = input.value.substring(0, input.value.length - 1);
                     input.value = input.value.substring(0, input.value.length - 1);
                     if(input.value === ' ')
