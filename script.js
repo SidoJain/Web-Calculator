@@ -41,7 +41,7 @@ arr.forEach(button => {
                     input.value = parseFloat(input.value).toFixed(4);
             }
             else if(e.target.innerHTML === '&lt;='){
-                if(input.value === 'Infinity' || input.value === 'NaN')
+                if(input.value === 'Infinity' || input.value === 'NaN' || input.value === '-Infinity')
                     input.value = '';
                 else{
                     if(input.value.slice(-1) === ' ')
