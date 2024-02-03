@@ -36,6 +36,8 @@ arr.forEach(button => {
 
                 if(input.value.includes('-')){
                     input.value = input.value.replaceAll(' -', ' + -')
+                    if(input.value.slice(0, 2) === ' +')
+                    input.value = input.value.replace(' + ', '');
 
                     temp_ = input.value.split(' ');
                     for(let i = 0; i < temp_.length; i++)
