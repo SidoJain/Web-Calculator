@@ -1,0 +1,2 @@
+Known Bugs:
+    1. (Negative Number) ^ (Any Number) doesn't give an answer
