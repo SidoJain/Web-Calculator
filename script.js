@@ -53,7 +53,7 @@ arr.forEach(button => {
                 else if(input.value.includes('.'))
                     input.value = parseFloat(input.value).toFixed(4);
             }
-            else if(e.target.innerHTML === '&lt;='){
+            else if(e.target.innerHTML === 'DEL'){
                 if(input.value === 'Infinity' || input.value === 'NaN' || input.value === '-Infinity')
                     input.value = '';
                 else{
@@ -96,7 +96,7 @@ arr.forEach(button => {
                 if(count === 0)
                     input.value += e.target.innerHTML;
             }
-            else if(!'% + x ÷ ^ AC &lt;= ='.includes(e.target.innerHTML)){
+            else if(!'% + x ÷ ^ AC DEL ='.includes(e.target.innerHTML)){
                 if(e.target.innerHTML === '-')
                     input.value += ' ' + e.target.innerHTML;
                 else
