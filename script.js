@@ -7,7 +7,7 @@ let arr = Array.from(bottons);
 arr.forEach(button => {
     button.addEventListener('click', (e) => {
         if (input.value != '') {
-            if ('x ÷ ^ %'.includes(e.target.innerHTML) && !input.value.endsWith(' '))
+            if ('x ÷ ^ %'.includes(e.target.innerHTML) && !input.value.endsWith(' ') && !input.value.endsWith('('))
                 input.value += ' ' + e.target.innerHTML + ' ';
             else if ('+ -'.includes(e.target.innerHTML))
                 input.value += ' ' + e.target.innerHTML;
@@ -33,6 +33,8 @@ arr.forEach(button => {
                     input.value = input.value.substring(0, input.value.length - 8);
                 else if (input.value.endsWith(' '))
                     input.value = input.value.substring(0, input.value.length - 3);
+                else if (input.value.endsWith('+') || input.value.endsWith('-'))
+                    input.value = input.value.substring(0, input.value.length - 2);
                 else
                     input.value = input.value.substring(0, input.value.length - 1);
             }
