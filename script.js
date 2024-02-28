@@ -13,7 +13,7 @@ arr.forEach(button => {
                 input.value += ' ' + e.target.innerHTML;
             else if ('eπ'.includes(e.target.innerHTML) && !'x÷%^1234567890eπ'.includes(input.value.charAt(input.value.length - 1)))
                 input.value += e.target.innerHTML;
-            else if ((e.target.innerHTML === '(' && !'0123456789eπ)'.includes(input.value.charAt(input.value.length - 1))) || e.target.innerHTML === ')')
+            else if ((e.target.innerHTML === '(' && !'0123456789eπ)'.includes(input.value.charAt(input.value.length - 1))) || (e.target.innerHTML === ')' && !'+-( '.includes(input.value.charAt(input.value.length - 1))))
                 input.value += e.target.innerHTML;
             else if (e.target.innerHTML === '.' && !'eπ)'.includes(input.value.charAt(input.value.length - 1))) {
                 let _temp = input.value.split(' ');
